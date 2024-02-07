@@ -1,12 +1,17 @@
 package Personal.NewsFeedSocialNetwork.model;
 
+import Personal.NewsFeedSocialNetwork.enums.RelationshipStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -21,27 +26,28 @@ import lombok.Setter;
 
 @Entity
 @JsonInclude(Include.NON_NULL)
-@Table(name = "user")
+@Table(name = "relationship")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Relationship {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "user_id")
 	private String name;
 
-	@Column(name = "email", nullable = false)
+	@Column(name = "friend_user_id")
 	private String email;
 
-	@Column(name = "active", nullable = false)
-	private boolean active = true;
+	@Column(name = "relationship_status")
+	@Enumerated(EnumType.STRING)
+	private RelationshipStatus relationshipStatus;
 
 	@Column(name = "created_at", nullable = false)
 	private Date createdAt;
@@ -58,8 +64,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<UserStory> userStories;
 
-	@OneToMany(mappedBy = "user")
-	private List<Relationship> relationships;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@PrePersist
 	public void prePersist() {

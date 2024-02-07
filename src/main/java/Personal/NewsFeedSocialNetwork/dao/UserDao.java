@@ -2,7 +2,9 @@ package Personal.NewsFeedSocialNetwork.dao;
 
 import Personal.NewsFeedSocialNetwork.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface TestDao extends JpaRepository<User, Long> {
+@Repository
+public interface UserDao extends JpaRepository<User, Long> {
 
 }
