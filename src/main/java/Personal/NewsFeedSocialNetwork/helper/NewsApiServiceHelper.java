@@ -3,8 +3,10 @@ package Personal.NewsFeedSocialNetwork.helper;
 import Personal.NewsFeedSocialNetwork.dto.NewsApiResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Service
 public class NewsApiServiceHelper {
 
 	private final RestTemplate restTemplate;

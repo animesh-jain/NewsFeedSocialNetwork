@@ -15,6 +15,7 @@ public class UserService {
 		User user = User.builder()
 			            .name(name)
 			            .email(email)
+			            .active(true)
 			            .build();
 		return userDao.save(user);
 	}

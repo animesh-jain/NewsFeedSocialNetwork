@@ -15,6 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -39,10 +40,10 @@ public class UserStory {
 	private Long id;
 
 	@Column(name = "user_id")
-	private String userId;
+	private Long userId;
 
 	@Column(name = "event_id")
-	private String eventId;
+	private Long eventId;
 
 	@Column(name = "comment")
 	private String comment;
@@ -50,16 +51,21 @@ public class UserStory {
 	@Column(name = "duration")
 	private Integer duration;
 
+	@Column(name = "active")
+	private Boolean active;
+
 	@Column(name = "created_at", nullable = false)
 	private Date createdAt;
 
 	@Column(name = "updated_at", nullable = false)
 	private Date updatedAt;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	private User user;
 
+	@Transient
+	private Event event;
 	@PrePersist
 	public void prePersist() {
 		this.createdAt = new Date();

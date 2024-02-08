@@ -52,14 +52,14 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<UserInterest> userInterests;
 
-	@OneToMany(mappedBy = "user")
-	private List<UserUpdate> userUpdates;
-
-	@OneToMany(mappedBy = "user")
-	private List<UserStory> userStories;
-
-	@OneToMany(mappedBy = "user")
-	private List<Relationship> relationships;
+//	@OneToMany(mappedBy = "user")
+//	private List<UserUpdate> userUpdates;
+//
+//	@OneToMany(mappedBy = "user")
+//	private List<UserStory> userStories;
+//
+//	@OneToMany(mappedBy = "user")
+//	private List<Relationship> relationships;
 
 	@PrePersist
 	public void prePersist() {

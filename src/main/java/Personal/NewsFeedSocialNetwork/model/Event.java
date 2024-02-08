@@ -12,9 +12,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -31,7 +34,10 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Event {
+public class Event implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = -7234461701857355838L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,13 +62,15 @@ public class Event {
 	@Column(name = "updated_at", nullable = false)
 	private Date updatedAt;
 
-	@ManyToMany
-	@JoinTable(
-		name = "event_topic_mapping",
-		joinColumns = @JoinColumn(name = "event_id"),
-		inverseJoinColumns = @JoinColumn(name = "topic")
-	)
-	private List<Topic> topics;
+	@OneToOne(mappedBy = "event")
+	private EventTopicMapping eventTopicMapping;
+//	@ManyToMany
+//	@JoinTable(
+//		name = "event_topic_mapping",
+//		joinColumns = @JoinColumn(name = "event_id"),
+//		inverseJoinColumns = @JoinColumn(name = "topic")
+//	)
+//	private List<Topic> topics;
 
 	@PrePersist
 	public void prePersist() {

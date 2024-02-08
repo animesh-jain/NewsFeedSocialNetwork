@@ -39,13 +39,22 @@ public class UserUpdate {
 	private Long id;
 
 	@Column(name = "user_id")
-	private String userId;
+	private Long userId;
 
 	@Column(name = "event_id")
-	private String eventId;
+	private Long eventId;
 
 	@Column(name = "comment")
 	private String comment;
+
+	@Column(name = "like")
+	private boolean like;
+
+	@Column(name = "share")
+	private boolean share;
+
+	@Column(name = "caption")
+	private String caption;
 
 	@Column(name = "created_at", nullable = false)
 	private Date createdAt;
@@ -53,9 +62,13 @@ public class UserUpdate {
 	@Column(name = "updated_at", nullable = false)
 	private Date updatedAt;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	private User user;
+
+//	@ManyToOne
+//	@JoinColumn(name = "event_id")
+//	private Event event;
 
 	@PrePersist
 	public void prePersist() {

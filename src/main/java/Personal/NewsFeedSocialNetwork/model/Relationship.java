@@ -40,10 +40,10 @@ public class Relationship {
 	private Long id;
 
 	@Column(name = "user_id")
-	private String name;
+	private Long userId;
 
 	@Column(name = "friend_user_id")
-	private String email;
+	private Long friendUserId;
 
 	@Column(name = "relationship_status")
 	@Enumerated(EnumType.STRING)
@@ -55,18 +55,18 @@ public class Relationship {
 	@Column(name = "updated_at", nullable = false)
 	private Date updatedAt;
 
-	@OneToMany(mappedBy = "user")
-	private List<UserInterest> userInterests;
-
-	@OneToMany(mappedBy = "user")
-	private List<UserUpdate> userUpdates;
-
-	@OneToMany(mappedBy = "user")
-	private List<UserStory> userStories;
-
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+//	@OneToMany(mappedBy = "relationship")
+//	private List<UserInterest> userInterests;
+//
+//	@OneToMany(mappedBy = "relationship")
+//	private List<UserUpdate> userUpdates;
+//
+//	@OneToMany(mappedBy = "relationship")
+//	private List<UserStory> userStories;
+//
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	private User user;
 
 	@PrePersist
 	public void prePersist() {
