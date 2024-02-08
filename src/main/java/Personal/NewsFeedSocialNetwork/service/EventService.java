@@ -115,7 +115,8 @@ public class EventService {
 			try{
 				EventTopicMapping eventTopicMapping = EventTopicMapping
 					                                      .builder()
-					                                      .event(event)
+					                                      .eventId(savedEvent.getId())
+					                                      .event(savedEvent)
 					                                      .topic(Topic.valueOf(completionDTO
 						                                                           .getChoices()
 						                                                           .get(0)
